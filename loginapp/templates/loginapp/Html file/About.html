@@ -1,0 +1,247 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tax Management System</title>
+            <link rel="stylesheet" type="text/css" href="{% static 'css/About.css' %}">
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+            <!-- jQuery library -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+            <!-- Popper JS -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+            <!-- Latest compiled JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+
+            <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <style>
+              
+                @media (max-width: 1024px){
+                    .building-img {
+                        width: 550px;
+                        height: auto;
+                        overflow: hidden;
+                    
+                    }
+                }
+                @media (max-width: 768px){
+                    .building-img {
+                        width: 690px;
+                        height: auto;
+                        overflow: hidden;
+                    
+                    }
+                    .search{
+                    display: none;
+                }
+                }
+                @media (max-width: 540px){
+                    .building-img {
+                        width: 500px;
+                        height: auto;
+                        overflow: hidden;
+                    
+                    }
+                }
+                @media (max-width: 414px){
+                    .building-img {
+                        width: 350px;
+                        height: auto;
+                        overflow: hidden;
+                    
+                    }
+                }
+                @media (max-width: 360px){
+                    .building-img {
+                        width: 330px;
+                        height: auto;
+                        overflow: hidden;
+                    
+                    }
+                }
+                @media (max-width: 320px){
+                    .building-img {
+                        width: 300px;
+                        height: auto;
+                        overflow: hidden;
+                    
+                    }
+                }
+                @media (max-width: 280px){
+                    .building-img {
+                        width: 200px;
+                        height: auto;
+                        overflow: hidden;
+                    
+                    }
+                }
+            </style>
+    </head>
+    <body>
+        	<!--navigation bar-->
+            <div class="header">
+                <nav class="navbar navbar-expand-md navbar-dark navigation">
+                  <div class="container">
+                    <a
+                      href="{% url 'home' %}"
+                      class="navbar-brand text-warning font-weight-bold"
+                    >
+                      <img class="navbar-logo" src="{% static 'Images/logopng.png' %}" />
+                    </a>
+          
+                    <button
+                      class="navbar-toggler"
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapsenavbar"
+                    >
+                      <span class="navbar-toggler-icon"> </span>
+                    </button>
+                    <div class="collapse navbar-collapse text-center" id="collapsenavbar">
+                      <ul class="navbar-nav ml-auto mr-auto">
+                        <li class="nav-item">
+                          <a href="{% url 'home' %}" class="nav-link text-white">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="{% url 'Tax_calculator' %}" class="nav-link text-white"
+                            >TAX CALCULATOR</a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="{% url 'about' %}" class="nav-link text-white">ABOUT US</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                          <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            id="navbarDropdown"
+                            role="button"
+                            data-toggle="dropdown"
+                            style="color: white"
+                          >
+                            NEWS
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'politics' %}">
+                              POLITICS
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'entertainment' %}">
+                              ENTERTAINMENT
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'business' %}">
+                              BUSINESS
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'sports' %}">
+                              SPORTS
+                            </a>
+                          </div>
+                        </li>
+                        
+                      </ul>
+                      <a href="{% url 'logout' %}" class="nav-link text-white">
+                        <button type="button" class="btn btn-primary btn-sm">
+                          Logout
+                        </button>
+                      </a>
+                      <div class="search">
+                        <form class="d-flex" action="{% url 'search' %}">
+                          <input
+                            class="form-control"
+                            type="search"
+                            name="search"
+                            placeholder="Search"
+                            aria-label="Search"
+                          />
+                          <button class="btn btn-success btn-sm ml-2" type="submit">
+                            Search
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </nav>
+              </div>
+    <div class="bg-image">
+    </div>
+    <div class="container">
+        <div class="text-center">
+            <h3 class="topic text-center mt-5">ABOUT US</h3>
+            <hr class="bg-success mb-4 mt-0 d-inline-block" style="width: 125px; height: 2px;">
+        </div>
+        <div class="row mb-5">
+            
+                <p class="paragraph">
+                    The world is going to be more digital, and digitization is the need of every business, every Industry. 
+                    Our Online News play a vital role in educating and informing Mass with latest updates, current happenings 
+                    around the globe. People don’t have much more time to read the Printed newspaper with yesterday’s happening, 
+                    so they always follow web portals or Electronic Media for getting latest News. With Electronic media, there is 
+                    a certain problem like Costing of On Air is higher, and everyone is not always in front of Television set, but 
+                    they can access their mobile, social sites, Whatsapp, Facebook etc. so they will defiantly update them self very 
+                    fast and less time-consuming methods. Online News Website and social media can give the fastest news Updates. Now 
+                    every publisher has to build their web identity.
+                </p>
+                <p class="paragraph mt-5">
+                    People rely on the online media as the major channel of information because there is lots of trusted 
+                    news websites present in WWW. Some of the premier world news portals are news.bbc.co.uk, cnn.com, 
+                    foxnews.com, and reuters.com and many more news portals are continuously serving people. Even people 
+                    going to be more digital through Social media. And so many other country specific News portals are 
+                    also serving people with all news and headlines from that particular country. Some of the premium 
+                    Indian news portals including zeenews.com, ndtv.com, and ibnlive.com, Khabarhulchal.com deliver 
+                    exclusive news and update and news from all across the Globe.
+                </p>
+               
+            </div>
+            
+        </div>
+        
+     <!--Footer-->
+        <div class="footer" style="margin-top: 25px; background-color: black color: white;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 footer-content">
+                    <img src="{% static 'Images/logopng.png' %}" class="navbar-logo" />
+                    <p>Phone No: </p>
+                    <p>taxsewa@gmail.com</p>
+                    </div>
+                    <div class="col-lg-4 footer-content">
+                    <h6>News</h6>
+                    <a href="{% url 'politics' %}" style="color: white; text-decoration: none;"><p>Politics</p></a>
+                    <a href="{% url 'entertainment' %}" style="color: white; text-decoration: none;"><p>Entertainment</p></a>
+                    <a href="{% url 'sports' %}" style="color: white; text-decoration: none;"><p>Sports</p></a>
+                    <a href="{% url 'business' %}" style="color: white; text-decoration: none;"><p>Business</p></a>
+                    </div>
+                    <div class="col-lg-4 footer-content">
+                    <h6>You can also find us on</h6>
+                    <div style="font-size: 35px; margin-left: 10px">
+                        <a href = "https://www.facebook.com/News24nepal.tv" target="_blank">
+                            <i class="fa fa-facebook-official" style="color: blue;"></i>
+                          </a>
+                          &nbsp;&nbsp;
+                          <a href="https://www.instagram.com/ekantipur_news/" target="_blank">
+                          <i class="fa fa-instagram" style="color:white;"></i>
+                          </a>
+                          &nbsp;&nbsp;
+                          <a href="#">
+                          <i class="fa fa-twitter-square"  style="color: white;" target="_blank"></i></a>
+                    </div>
+                    </div>
+                    <hr class="mb-3" style="background-color: white; border: 1px solid white; width: 100%; margin-left: 0; margin-right: 0;">
+                    <div style="background-color:black; color: white; width: 100%">
+                    <p style="text-align: center">
+                        Copyright &copy; 2022 Tax Sewa, All rights reserved
+                    </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

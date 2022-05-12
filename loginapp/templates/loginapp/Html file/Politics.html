@@ -1,0 +1,241 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tax Management System</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/news.css' %}" />
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="header">
+      <nav class="navbar navbar-expand-md navbar-dark navigation">
+        <div class="container">
+          <a
+            href="{% url 'home' %}"
+            class="navbar-brand text-warning font-weight-bold"
+          >
+            <img class="navbar-logo" src="{% static 'Images/logopng.png' %}" />
+          </a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#collapsenavbar"
+          >
+            <span class="navbar-toggler-icon"> </span>
+          </button>
+          <div class="collapse navbar-collapse text-center" id="collapsenavbar">
+            <ul class="navbar-nav ml-auto mr-auto">
+              <li class="nav-item">
+                <a href="{% url 'home' %}" class="nav-link text-white">HOME</a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'Tax_calculator' %}" class="nav-link text-white"
+                  >TAX CALCULATOR</a
+                >
+              <li class="nav-item">
+                <a href="{% url 'about' %}" class="nav-link text-white">ABOUT US</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  style="color: white"
+                >
+                  NEWS
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{% url 'politics' %}">
+                    POLITICS
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{% url 'entertainment' %}">
+                    ENTERTAINMENT
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{% url 'business' %}">
+                    BUSINESS
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{% url 'sports' %}">
+                    SPORTS
+                  </a>
+                </div>
+              </li>
+              
+              </li>
+            </ul>
+            <a href="{% url 'logout' %}" class="nav-link text-white">
+              <button type="button" class="btn btn-primary btn-sm">
+                Logout
+              </button>
+            </a>
+            <div class="search">
+              <form class="d-flex" action="{% url 'search' %}">
+                <input
+                  class="form-control"
+                  type="search"
+                  name="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+                <button class="btn btn-success btn-sm ml-2" type="submit">
+                  Search
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="bg-image">
+      <div class="overlay">
+        <div class="container">
+          <h4 class="topic text-center">Politics</h4>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mt-5">
+          {% for post in object_list %} {% if post.category == 'Politics' %}
+          <div class="row">
+            <div class="col-lg-5">
+              <!-- <img src="{% static 'Images/Covid.jpg' %}" style="width: 100%" /> -->
+              {% if post.header_image %}
+              <img src="{{ post.header_image.url }}" style="width: 100%" />
+              {% else %}
+              <img
+                src="{% static 'Images/icon-image.png' %}"
+                style="width: 100%; height: 150px; object-fit: cover;"
+              />
+              {% endif %}
+            </div>
+            <div class="col-lg-7">
+              <a href="{% url 'article-detail' post.pk %}"><p class="title">{{ post.title|truncatechars:100 }}</p></a>
+              <div class="row ml-2">
+                <i class="fa fa-clock-o" aria-hidden="true"> 1 day ago</i>
+                &nbsp;&nbsp;&nbsp;
+                <i class="fa fa-comment" aria-hidden="true"> 0 comments</i>
+              </div>
+              {{ post.body|truncatechars:100 }}
+            </div>
+            <hr style="border: 1px solid grey; width: 98%" />
+          </div>
+          {% endif%} {% endfor %}
+        </div>
+        <!--Right side news code-->
+        <div class="col-lg-4" id="most_viewed_news">
+          <h4 class="viewed_news px-2 py-2 mb-5">Most Viewed News</h4>
+          <!-- {% for po in object_list %} -->
+          <!-- {% endfor %}  -->
+          {% for post in object_list %}
+          {% if forloop.counter < 6  %}
+          <div class="row">
+            <div class="col-lg-6">
+              <!-- <img src="{% static 'Images/pathao.jpg' %}" class="news_image"> -->
+              {% if post.header_image %}
+              <img
+                src="{{ post.header_image.url }}"
+                class="news_image"
+                
+              />
+              {% else %}
+              <img
+                src="{% static 'Images/icon-image.png' %}"
+                class="news_image"
+                alt="..."
+              />
+              {% endif %}
+            </div>
+            <div class="col-lg-6">
+              <a href="{% url 'article-detail' post.pk %}"><h5 style="font-family: Roboto; font-size: 18px; font-weight: bold;">{{ post.title|truncatechars:50 }}</h5></a>
+              <h5 style="font-family: Roboto; font-size: 18px; font-weight: bold;">{{ post.body|truncatechars:50 }}</h5>
+            </div>
+          </div>
+          <hr>
+          {% endif %}
+          {% endfor %}
+          <h4 class="viewed_news px-2 py-2 mb-5">Trending</h4>
+          {% for post in object_list %}
+          {% if forloop.counter < 6  %}
+          <a href="{% url 'article-detail' post.pk %}"><h5 style="font-family: Roboto; font-size: 18px; font-weight: bold;">{{ post.title|truncatechars:50 }}</h5></a>
+          <h5 style="font-family: Roboto; font-size: 18px; font-weight: bold;">{{ post.body|truncatechars:50 }}</h5>
+          <hr>
+          {% endif %}
+          {% endfor %}
+          
+      </div>
+      </div>
+    </div>
+    <!--Footer-->
+    <div class="footer" style="margin-top: 25px; background-color: black; color: white;">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 footer-content">
+            <img src="{% static 'Images/logopng.png' %}" class="navbar-logo" />
+            <p>The english edition Online News</p>
+            <p>taxsewa69@gmail.com</p>
+          </div>
+          <div class="col-lg-4 footer-content">
+            <h6>News</h6>
+            <a href="{% url 'politics' %}" style="color: white; text-decoration: none;"><p>Politics</p></a>
+            <a href="{% url 'entertainment' %}" style="color: white; text-decoration: none;"><p>Entertainment</p></a>
+            <a href="{% url 'sports' %}" style="color: white; text-decoration: none;"><p>Sports</p></a>
+            <a href="{% url 'business' %}" style="color: white; text-decoration: none;"><p>Business</p></a>
+          </div>
+          <div class="col-lg-4 footer-content">
+            <h6>You can also find us on</h6>
+            <div style="font-size: 35px; margin-left: 10px">
+              <a href = "https://www.facebook.com/News24nepal.tv" target="_blank">
+                <i class="fa fa-facebook-official" style="color: blue;"></i>
+              </a>
+              &nbsp;&nbsp;
+              <a href="https://www.instagram.com/ekantipur_news/" target="_blank">
+              <i class="fa fa-instagram" style="color:#F56040;;"></i>
+              </a>
+              &nbsp;&nbsp;
+              <a href="twitter.com/rsnpj">
+              <i class="fa fa-twitter-square"  style="color: #405DE6;" target="_blank"></i></a>
+            </div>
+          </div>
+          <hr class="mb-3" style="background-color: white; border: 1px solid white; width: 100%; margin-left: 0; margin-right: 0;">
+          <div style="background-color: black; color: white; width: 100%">
+            <p style="text-align: center">
+              Copyright &copy; 2022 Tax Sewa, All rights reserved
+            </p>
+          </div>
+      </div>
+    </div>
+    </div>
+  </body>
+</html>
